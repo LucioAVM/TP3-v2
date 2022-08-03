@@ -43,31 +43,19 @@ int parser_CargarDesdeBin(LinkedList* listaMain,FILE* pArchivo)
 {
 	int retorno = -1;
 
-	char id[5];
-	char nombre[25];
-	char apellido[30];
-	char precio[10];
-	char codigoVuelo[30];
-	char tipoPasajero[30];
-	char estadoVuelo[30];
-
 	int validacion;
 
-	ePasajero* pasajero = NULL;
-
+	ePasajero* pasajero = pasajero_new();
 
 	do//id,name,lastname,price,flycode,typePassenger,statusFlight
 	{
-		validacion = fread(&pasajero,sizeof(pasajero),1,pArchivo);
-
-		printf("%d",validacion);
+		validacion = fread(pasajero,sizeof(ePasajero),1,pArchivo);
 
 		if(validacion ==  7 )
 		{
-			pasajero = pasajero_newParametros(id, nombre, apellido, precio, codigoVuelo, tipoPasajero, estadoVuelo);
-
-			if(ll_add(listaMain, pasajero) != -1)
+			if(ll_add(listaMain, pasajero) == 0)
 			{
+				printf("adentro");
 				retorno = 0;
 			}else{
 				ll_deleteLinkedList(listaMain);

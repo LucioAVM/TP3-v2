@@ -35,7 +35,7 @@ int main(void)
 			mostrarMensaje("se cargo correctamente el archivo", "no se pudo cargar", validacion);
 			break;
 		case 2:
-			validacion = controller_CargarDesdeBin(listaMain, "data.bin");
+			validacion = controller_CargarDesdeBin(listaTipo,listaEstado,listaMain, "data.bin");
 
 			mostrarMensaje("se cargo correctamente el archivo", "no se pudo cargar", validacion);//validar guardado de archivo cierre del programa
 			break;
@@ -76,7 +76,7 @@ int main(void)
 			break;
 		}
 		system("pause");
-	}while(menu != 0);
+	}while(menu != 10);
 
 
 	return EXIT_SUCCESS;

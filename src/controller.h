@@ -10,7 +10,7 @@ int mostrarMenu(void);
 
 int controller_CargarDesdeTexto(LinkedList* listaTipo, LinkedList* listaEstado,LinkedList* listaMain, char* path);
 
-int controller_CargarDesdeBin(LinkedList* listaMain, char* path);
+int controller_CargarDesdeBin(LinkedList* listaTipo, LinkedList* listaEstado,LinkedList* listaMain, char* path);
 
 int controller_AltaPasajero(LinkedList* listaMain, LinkedList* listaTipo, LinkedList* listaEstado);
 

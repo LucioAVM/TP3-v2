@@ -285,9 +285,22 @@ int funcionesMixtas_darDeAlta(LinkedList* listaMain, LinkedList* listaTipo, Link
 {
 	int retorno = -1;
 	int opcion;
+/*
+	int id;
+	char nombre[30];
+	char apellido[30];
+	float precio;
+	char codigoDeVuelo[30];
+	int tipoDeVuelo;
+	int estadoDeVuelo;
 
-	//ePasajero* pasajero;
+	char tipoDeVueloSTR[30];
+	char estadoDeVueloSTR[30];*/
+
+	ePasajero* pasajero = NULL;
 	ePasajero pasajeroAux;
+
+	pasajero = pasajero_new();
 
 	printf("ingrese nombre:\n");
 	fflush(stdout);
@@ -314,9 +327,9 @@ int funcionesMixtas_darDeAlta(LinkedList* listaMain, LinkedList* listaTipo, Link
 			"1-Aterrizado\n"
 			"2-En Horario\n"
 			"3-En Vuelo\n"
-			"4-Demorado\n", 0, 5, 5);
+			"4-Demorado\n\t->", 0, 5, 5);
 
-	pasajeroAux.id =  pasajero_nuevaId(listaMain);
+	pasajeroAux.id = pasajero_nuevaId(listaMain)+1;
 
 	funcionesMixtas_MostrarUnPasajero(pasajeroAux.id, pasajeroAux.nombre, pasajeroAux.apellido, pasajeroAux.precio, pasajeroAux.codigoVuelo, pasajeroAux.tipoDeVuelo, pasajeroAux.estadoDeVuelo, listaTipo, listaEstado);
 
@@ -324,8 +337,12 @@ int funcionesMixtas_darDeAlta(LinkedList* listaMain, LinkedList* listaTipo, Link
 
 	if(opcion == 1)
 	{
-		ll_add(listaMain, &pasajeroAux);
-		retorno = 0;
+		pasajero = &pasajeroAux;
+		if(ll_add(listaMain, pasajero) == 0)
+		{
+			retorno = 0;
+		}
+
 	}else{
 		printf("se descartaron los cambios");
 	}

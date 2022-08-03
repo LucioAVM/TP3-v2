@@ -50,7 +50,7 @@ int controller_CargarDesdeTexto(LinkedList* listaTipo, LinkedList* listaEstado,L
 	return retorno;
 }
 
-int controller_CargarDesdeBin(LinkedList* listaMain, char* path)//validar archivo binario
+int controller_CargarDesdeBin(LinkedList* listaTipo, LinkedList* listaEstado,LinkedList* listaMain, char* path)//validar archivo binario
 {
 	int retorno = -1;
 	FILE* pArchivo;
@@ -61,7 +61,11 @@ int controller_CargarDesdeBin(LinkedList* listaMain, char* path)//validar archiv
 
 		if(pArchivo != NULL)
 		{
-			retorno = parser_CargarDesdeBin(listaMain, pArchivo);
+			if(parser_CargarDesdeBin(listaMain, pArchivo) == 0
+					&& parser_CargarArchivosAuxiliares(listaEstado, listaTipo) == 0)
+			{
+				retorno = 0;
+			}
 		}
 
 		fclose(pArchivo);
@@ -78,7 +82,6 @@ int controller_AltaPasajero(LinkedList* listaMain, LinkedList* listaTipo, Linked
 	{
 		retorno = funcionesMixtas_darDeAlta(listaMain, listaTipo, listaEstado);
 	}
-
 
 	return retorno;
 }
